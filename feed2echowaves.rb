@@ -20,6 +20,8 @@ require 'feedzirra'
 #
 # CONSUMER_SECRET:  register your app in ECHOWAVES_URL/oauth_clients to get your secret key
 #
+# Also search for the 'text' variable near the end of this file and customize it for the info you want to publish
+#
 FEED = 
 METADATA_FILE = "feed2echowaves.metadata"
 TOKENS_FILE = "feed2echowaves.tokens"
@@ -85,6 +87,10 @@ feed = Feedzirra::Feed.fetch_and_parse( FEED )
 
 feed.entries.reverse.each_with_index do|i,idx|
   if i.published > metadata[FEED]
+    
+    ##
+    # customize the info you want to publish here
+    #
     text = "#{i.title}\n#{i.url}"
 
     access_token.post("#{ECHOWAVES_URL}/conversations/#{CONVO_ID}/messages.xml", "message[message]=#{text}")
