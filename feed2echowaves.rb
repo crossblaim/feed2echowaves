@@ -29,6 +29,8 @@ ECHOWAVES_URL = "http://echowaves.com"
 CONVO_ID = 
 CONSUMER_KEY = 
 CONSUMER_SECRET = 
+BEFORE_TXT = ''
+AFTER_TXT = ''
 # end of the user configuration
 
 
@@ -91,7 +93,7 @@ feed.entries.reverse.each_with_index do|i,idx|
     ##
     # customize the info you want to publish here
     #
-    text = "#{i.title}\n#{i.url}"
+    text = "#{BEFORE_TXT}\n#{i.title}\n#{i.url}\n#{AFTER_TXT}"
 
     access_token.post("#{ECHOWAVES_URL}/conversations/#{CONVO_ID}/messages.xml", "message[message]=#{text}")
     
